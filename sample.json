@@ -1,0 +1,22 @@
+{
+    "priority": 40000,
+    "timeout": 0,
+    "isPermanent": true,
+    "deviceId": "deviceId",
+    "treatment": {
+        "instructions": [
+            {
+                "type": "OUTPUT",
+                "port": "port"
+            }
+        ]
+    },
+    "selector": {
+        "criteria": [
+            {
+                "type": "ETH_DST",
+                "mac": "mac"
+            }
+        ]
+    }
+}
