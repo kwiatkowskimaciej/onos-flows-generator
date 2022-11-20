@@ -7,6 +7,8 @@ from hosts_switches import hs
 
 
 def find_link(src, dst):
+    """Function that finds link between source device and destination device and returns list with two tuples
+    containing deviceId and port"""
     if src == 0:
         src = 'a'
     if dst == 0:
@@ -46,6 +48,7 @@ dst_switch_nr = int(dst_switch_nr)
 dst_port = hs[user_dst]['port']
 dst_host = hs[user_dst]['host']
 
+# finding the shortest path
 graph_links = [(1, 2), (1, 3), (2, 3), (3, 4), (3, 6), (3, 8), (6, 8), (4, 6),
                (4, 7), (6, 7), (5, 7), (6, 9), (9, 0), (7, 8), (7, 9)]
 
@@ -87,19 +90,21 @@ flows['flows'].append(flow)
 
 route = [graph_links[result] for result in results[0]]
 
-print(route)
+# print(route)
 
+# setting the switches in correct order
 for connection in route:
     if route.index(connection) != 0:
-        if connection[0] != route[route.index(connection)-1][1]:
+        if connection[0] != route[route.index(connection) - 1][1]:
             new_connection = (connection[1], connection[0])
             route[route.index(connection)] = new_connection
     elif src_switch_nr != connection[0]:
         new_connection = (connection[1], connection[0])
         route[route.index(connection)] = new_connection
 
-print(route)
+# print(route)
 
+# creating flows between switches
 for connection in route:
     src_dst = connection
     link1 = find_link(src_dst[0], src_dst[1])
@@ -117,7 +122,7 @@ for connection in route:
     flow['selector']['criteria'][0]['mac'] = src_host
     flows['flows'].append(flow)
 
-print(flows)
+# print(flows)
 
 flows_json = json.dumps(flows, indent=4)
 
@@ -128,9 +133,8 @@ headers = {
 
 response = requests.post('http://192.168.1.75:8181/onos/v1/flows', headers=headers, data=flows_json,
                          auth=('karaf', 'karaf'))
-print(response)
 
-# Wykres
+# Graph for shortest path
 g.es['width'] = 0.5
 g.es[results[0]]['width'] = 2.5
 
