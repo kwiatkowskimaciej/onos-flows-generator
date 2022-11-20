@@ -108,7 +108,7 @@ for connection in route:
 for connection in route:
     src_dst = connection
     link1 = find_link(src_dst[0], src_dst[1])
-    print(link1)
+    # print(link1)
 
     flow = copy.deepcopy(sample)
     flow['deviceId'] = link1[0][0]
@@ -133,6 +133,8 @@ headers = {
 
 response = requests.post('http://192.168.1.75:8181/onos/v1/flows', headers=headers, data=flows_json,
                          auth=('karaf', 'karaf'))
+
+print(response)
 
 # Graph for shortest path
 g.es['width'] = 0.5
