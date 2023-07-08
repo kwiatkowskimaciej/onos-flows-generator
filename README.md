@@ -1,5 +1,5 @@
 # ONOS Flows Generator
-Python program for generating flows in the Mininet network emulator using [ONOS REST API](https://wiki.onosproject.org/display/ONOS/Appendix+B%3A+REST+API#AppendixB:RESTAPI-Flow). 
+Python program for generating flows in the [Mininet](http://mininet.org) network emulator using [ONOS REST API](https://wiki.onosproject.org/display/ONOS/Appendix+B%3A+REST+API#AppendixB:RESTAPI-Flow). 
 
 The application collects information from the user regarding the source, direction and size of the data stream. Then, using the [igraph](https://python.igraph.org/en/stable/) library, it determines the shortest path between the switches, taking into account the path weights. Based on the path created in this way, the application creates a JSON file containing the network nodes configuration and, using the "requests" library, sends the POST command to configure the network nodes.
 
