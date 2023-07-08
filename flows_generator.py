@@ -141,24 +141,24 @@ while is_on:
 
     print(response)
 
-    # # Graph for shortest path
-    # g.es['width'] = 0.5
-    # g.es[results[0]]['width'] = 2.5
-    #
-    # fig, ax = plt.subplots()
-    # ig.plot(
-    #     g,
-    #     target=ax,
-    #     layout='circle',
-    #     vertex_color='steelblue',
-    #     vertex_label=range(g.vcount()),
-    #     edge_width=g.es['width'],
-    #     edge_label=g.es["weight"],
-    #     edge_color='#666',
-    #     edge_align_label=True,
-    #     edge_background='white'
-    # )
-    # plt.show()
+    # Graph for shortest path
+    g.es['width'] = 0.5
+    g.es[results[0]]['width'] = 2.5
+    
+    fig, ax = plt.subplots()
+    ig.plot(
+        g,
+        target=ax,
+        layout='circle',
+        vertex_color='steelblue',
+        vertex_label=range(g.vcount()),
+        edge_width=g.es['width'],
+        edge_label=g.es["weight"],
+        edge_color='#666',
+        edge_align_label=True,
+        edge_background='white'
+    )
+    plt.show()
 
     turn_off = input('Checesz kontynuować? (y/n): ')
 
